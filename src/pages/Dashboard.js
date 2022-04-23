@@ -4,7 +4,7 @@ import DashboardContent from '../components/Dashboard/DashboardContent'
 import DashboardSidebar from '../components/Dashboard/DashboardSidebar'
 
 const Dashboard = () => {
-  const userType = 'Staff'
+  const userType = 'Student'
   const [activeTab, setActiveTab] = useState(0)
   const [openSideBar, setOpenSideBar] = useState(false)
 
