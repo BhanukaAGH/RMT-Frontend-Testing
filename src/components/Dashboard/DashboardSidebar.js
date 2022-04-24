@@ -37,6 +37,11 @@ const StaffMenus = [
   { name: 'Evaluates', icon: VscSymbolKeyword },
 ]
 
+const PanelMemberMenus = [
+  { name: 'Topics', icon: MdOutlineSubtitles },
+  { name: 'Presentations', icon: VscSymbolKeyword },
+]
+
 const sideBarVariants = {
   hidden: {
     x: '-1000',
@@ -68,8 +73,10 @@ const DashboardSidebar = ({
       setMenus(AdminMenus)
     } else if (userType === 'Student') {
       setMenus(StudentMenus)
-    } else if (userType === 'Staff') {
+    } else if (userType === 'supervisor' || userType === 'co_supervisor') {
       setMenus(StaffMenus)
+    } else if (userType === 'panel_member') {
+      setMenus(PanelMemberMenus)
     }
   }, [userType])
 

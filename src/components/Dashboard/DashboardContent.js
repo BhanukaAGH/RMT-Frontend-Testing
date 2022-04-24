@@ -18,6 +18,10 @@ import StudentChats from '../Student/StudentChats'
 import TopicRequest from '../Staff/TopicRequest'
 import Evaluates from '../Staff/Evaluates'
 
+// Staff Component
+import PanelTopics from '../PanelMember/PanelTopics'
+import PanelPresentation from '../PanelMember/PanelPresentation'
+
 const DashboardContent = ({
   userType,
   activeTab,
@@ -49,8 +53,16 @@ const DashboardContent = ({
         {userType === 'Student' && activeTab === 4 && <StudentChats />}
 
         {/* Staff Content */}
-        {userType === 'Staff' && activeTab === 0 && <TopicRequest />}
-        {userType === 'Staff' && activeTab === 1 && <Evaluates />}
+        {(userType === 'supervisor' || userType === 'co_supervisor') &&
+          activeTab === 0 && <TopicRequest />}
+        {(userType === 'supervisor' || userType === 'co_supervisor') &&
+          activeTab === 1 && <Evaluates />}
+
+        {/* PanelMember */}
+        {userType === 'panel_member' && activeTab === 0 && <PanelTopics />}
+        {userType === 'panel_member' && activeTab === 1 && (
+          <PanelPresentation />
+        )}
       </div>
     </div>
   )
