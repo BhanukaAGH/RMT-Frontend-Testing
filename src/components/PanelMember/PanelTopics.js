@@ -1,7 +1,7 @@
 import React from 'react'
 
 const PanelTopics = () => {
-  return <div className='p-5 overflow-auto w-full h-full'>PanelTopics</div>
+  return <div className='h-full w-full overflow-auto p-5'>PanelTopics</div>
 }
 
 export default PanelTopics

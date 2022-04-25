@@ -10,24 +10,24 @@ const DashboardNavbar = ({ setOpenSideBar }) => {
   const [openDropDown, setOpenDropDown] = useState(false)
 
   return (
-    <div className='flex w-full items-center justify-between px-8 py-3 border-b-2'>
+    <div className='flex w-full items-center justify-between border-b-2 px-8 py-3'>
       <AiOutlineMenu
-        className='text-2xl cursor-pointer md:hidden float-left hover:scale-125 duration-300'
+        className='float-left cursor-pointer text-2xl duration-300 hover:scale-125 md:hidden'
         onClick={() => setOpenSideBar((sidebar) => !sidebar)}
       />
-      <div className='flex items-center space-x-2 w-full justify-end'>
-        <div class='ml-3 relative'>
+      <div className='flex w-full items-center justify-end space-x-2'>
+        <div class='relative ml-3'>
           <button
             type='button'
-            class='flex items-center text-sm space-x-3'
+            class='flex items-center space-x-3 text-sm'
             onClick={() => setOpenDropDown(!openDropDown)}
           >
             <img
-              class='h-10 w-10 rounded-full ring-2 ring-[#e2a500] object-cover'
+              class='h-10 w-10 rounded-full object-cover ring-2 ring-[#e2a500]'
               src={UserImg}
               alt='user-profile'
             />
-            <span className='font-medium hidden md:block'>
+            <span className='hidden font-medium md:block'>
               it20009472@my.sliit.lk
             </span>
             <RiArrowDropDownLine className='text-xl' />
@@ -40,7 +40,7 @@ const DashboardNavbar = ({ setOpenSideBar }) => {
           {openDropDown && (
             <>
               <div
-                class='origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-30'
+                class='absolute right-0 z-30 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'
                 role='menu'
                 aria-orientation='vertical'
                 aria-labelledby='user-menu-button'

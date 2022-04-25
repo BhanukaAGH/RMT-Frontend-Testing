@@ -1,7 +1,7 @@
 import React from 'react'
 
 const AdminSubmission = () => {
-  return <div className='p-5 overflow-auto w-full h-full'>AdminSubmission</div>
+  return <div className='h-full w-full overflow-auto p-5'>AdminSubmission</div>
 }
 
 export default AdminSubmission

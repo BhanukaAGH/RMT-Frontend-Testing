@@ -29,15 +29,15 @@ const DashboardContent = ({
   setOpenSideBar,
 }) => {
   return (
-    <div className='h-screen w-full relative flex flex-col overflow-hidden'>
+    <div className='relative flex h-screen w-full flex-col overflow-hidden'>
       {openSideBar && (
         <div
-          className='h-screen w-full z-10 bg-black opacity-40 absolute md:hidden'
+          className='absolute z-10 h-screen w-full bg-black opacity-40 md:hidden'
           onClick={() => setOpenSideBar(false)}
         ></div>
       )}
       <DashboardNavbar setOpenSideBar={setOpenSideBar} />
-      <div className='text-2xl font-semibold bg-indigo-50 w-full h-full overflow-hidden'>
+      <div className='h-full w-full overflow-hidden bg-indigo-50 text-2xl font-semibold'>
         {/* Admin Content */}
         {userType === 'Admin' && activeTab === 0 && <UsersContent />}
         {userType === 'Admin' && activeTab === 1 && <AdminSubmission />}

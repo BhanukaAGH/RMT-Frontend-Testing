@@ -2,7 +2,7 @@ import React from 'react'
 
 const StudentSubmission = () => {
   return (
-    <div className='p-5 overflow-auto w-full h-full'>StudentSubmission</div>
+    <div className='h-full w-full overflow-auto p-5'>StudentSubmission</div>
   )
 }
 
