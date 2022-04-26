@@ -82,16 +82,16 @@ const DashboardSidebar = ({
 
   return (
     <>
-      <div className='w-72 bg-[#3a454b] h-screen pt-8 border-r-2 hidden md:block'>
+      <div className='hidden h-screen w-72 border-r-2 bg-[#3a454b] pt-8 md:block'>
         <div className='flex items-center justify-center'>
-          <img src={logo} className='w-40 h-40 object-cover' alt='logo' />
+          <img src={logo} className='h-40 w-40 object-cover' alt='logo' />
         </div>
-        <ul className='pt-6 space-y-4'>
+        <ul className='space-y-4 pt-6'>
           {menus.map((menu, index) => (
             <li
               key={index}
-              className={`flex items-center py-2 pl-10 cursor-pointer hover:text-[#e2a500] text-gray-400 text-base font-medium hover:border-l-4 border-l-[#e2a500] space-x-4 ${
-                index === activeTab ? 'text-[#e2a500] border-l-4' : ''
+              className={`flex cursor-pointer items-center space-x-4 border-l-[#e2a500] py-2 pl-10 text-base font-medium text-gray-400 hover:border-l-4 hover:text-[#e2a500] ${
+                index === activeTab ? 'border-l-4 text-[#e2a500]' : ''
               }`}
               onClick={() => setActiveTab(index)}
             >
@@ -104,21 +104,21 @@ const DashboardSidebar = ({
       <AnimatePresence>
         {openSideBar && (
           <motion.div
-            className='absolute w-64 bg-[#3a454b] h-screen pt-8 border-r-2 z-20'
+            className='absolute z-20 h-screen w-64 border-r-2 bg-[#3a454b] pt-8'
             variants={sideBarVariants}
             initial='hidden'
             animate='visible'
             exit='exit'
           >
             <div className='flex items-center justify-center'>
-              <img src={logo} className='w-40 h-40 object-cover' alt='logo' />
+              <img src={logo} className='h-40 w-40 object-cover' alt='logo' />
             </div>
-            <ul className='pt-6 space-y-4'>
+            <ul className='space-y-4 pt-6'>
               {menus.map((menu, index) => (
                 <li
                   key={index}
-                  className={`flex items-center py-2 pl-10 cursor-pointer hover:text-[#e2a500] text-gray-400 text-base font-medium hover:border-l-4 border-l-[#e2a500] space-x-4 ${
-                    index === activeTab ? 'text-[#e2a500] border-l-4' : ''
+                  className={`flex cursor-pointer items-center space-x-4 border-l-[#e2a500] py-2 pl-10 text-base font-medium text-gray-400 hover:border-l-4 hover:text-[#e2a500] ${
+                    index === activeTab ? 'border-l-4 text-[#e2a500]' : ''
                   }`}
                   onClick={() => {
                     setActiveTab(index)
