@@ -1,4 +1,8 @@
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import OutsideClickHandler from 'react-outside-click-handler'
+import { toggleProfile } from '../../features/ui/uiSlice'
+import { AnimatePresence } from 'framer-motion'
 import DashboardNavbar from './DashboardNavbar'
 // Admin Component
 import UsersContent from '../Admin/UsersContent'
@@ -21,6 +25,7 @@ import Evaluates from '../Staff/Evaluates'
 // Staff Component
 import PanelTopics from '../PanelMember/PanelTopics'
 import PanelPresentation from '../PanelMember/PanelPresentation'
+import Profile from '../Profile'
 
 const DashboardContent = ({
   userType,
@@ -28,6 +33,9 @@ const DashboardContent = ({
   openSideBar,
   setOpenSideBar,
 }) => {
+  const dispatch = useDispatch()
+  const { openProfile } = useSelector((state) => state.ui)
+
   return (
     <div className='relative flex h-screen w-full flex-col overflow-hidden'>
       {openSideBar && (
@@ -37,20 +45,20 @@ const DashboardContent = ({
         ></div>
       )}
       <DashboardNavbar setOpenSideBar={setOpenSideBar} />
-      <div className='h-full w-full overflow-hidden bg-indigo-50 text-2xl font-semibold'>
+      <div className='relative h-full w-full overflow-hidden bg-indigo-50 text-2xl font-semibold'>
         {/* Admin Content */}
-        {userType === 'Admin' && activeTab === 0 && <UsersContent />}
-        {userType === 'Admin' && activeTab === 1 && <AdminSubmission />}
-        {userType === 'Admin' && activeTab === 2 && <StudentGroups />}
-        {userType === 'Admin' && activeTab === 3 && <MarkingScheme />}
-        {userType === 'Admin' && activeTab === 4 && <UploadsContent />}
+        {userType === 'admin' && activeTab === 0 && <UsersContent />}
+        {userType === 'admin' && activeTab === 1 && <AdminSubmission />}
+        {userType === 'admin' && activeTab === 2 && <StudentGroups />}
+        {userType === 'admin' && activeTab === 3 && <MarkingScheme />}
+        {userType === 'admin' && activeTab === 4 && <UploadsContent />}
 
         {/* Student Content */}
-        {userType === 'Student' && activeTab === 0 && <StudentGroup />}
-        {userType === 'Student' && activeTab === 1 && <StudentTopic />}
-        {userType === 'Student' && activeTab === 2 && <StudentTemplates />}
-        {userType === 'Student' && activeTab === 3 && <StudentSubmission />}
-        {userType === 'Student' && activeTab === 4 && <StudentChats />}
+        {userType === 'student' && activeTab === 0 && <StudentGroup />}
+        {userType === 'student' && activeTab === 1 && <StudentTopic />}
+        {userType === 'student' && activeTab === 2 && <StudentTemplates />}
+        {userType === 'student' && activeTab === 3 && <StudentSubmission />}
+        {userType === 'student' && activeTab === 4 && <StudentChats />}
 
         {/* Staff Content */}
         {(userType === 'supervisor' || userType === 'co_supervisor') &&
@@ -63,6 +71,15 @@ const DashboardContent = ({
         {userType === 'panel_member' && activeTab === 1 && (
           <PanelPresentation />
         )}
+        <AnimatePresence>
+          {openProfile && (
+            <OutsideClickHandler
+              onOutsideClick={() => dispatch(toggleProfile(false))}
+            >
+              <Profile />
+            </OutsideClickHandler>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   )
