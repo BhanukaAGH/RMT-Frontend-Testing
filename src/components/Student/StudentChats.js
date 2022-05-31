@@ -14,11 +14,13 @@ import { useSnackbar } from 'notistack'
 import moment from 'moment'
 import { IoChatbubblesSharp } from 'react-icons/io5'
 import axios from 'axios'
+import Spinner from '../Spinner'
 
 const StudentChats = () => {
   const [chat, setChat] = useState([])
   const [topic, setTopic] = useState(null)
   const [message, setMessage] = useState('')
+  const [loading, setLoading] = useState(false)
   const { enqueueSnackbar } = useSnackbar()
 
   const { user } = useSelector((state) => state.user)
@@ -26,14 +28,16 @@ const StudentChats = () => {
   useEffect(() => {
     const getTopic = async () => {
       if (user && user.groupId) {
+        setLoading(true)
         try {
           const response = await axios.get(
-            `/api/v1/topic/group/${user.groupId}`
+            `${process.env.SERVER_BACKEND_URL}/api/v1/topic/group/${user.groupId}`
           )
           setTopic(response.data)
         } catch (error) {
           enqueueSnackbar('You have no Topic', { variant: 'warning' })
         }
+        setLoading(false)
       }
     }
     getTopic()
@@ -65,6 +69,10 @@ const StudentChats = () => {
     }
   }, [topic])
 
+  if (loading) {
+    return <Spinner />
+  }
+
   return (
     <div className='h-full w-full overflow-hidden p-5'>
       {!user.groupId && (
@@ -93,17 +101,21 @@ const StudentChats = () => {
                 {chat &&
                   chat.map(({ uid, username, text, createAt }, index) => (
                     <li
-                      className={`flex pb-1 ${
+                      className={`flex ${
                         user._id === uid ? 'justify-end' : 'justify-start'
                       }`}
                       key={index}
                     >
                       <div className='flex-col'>
-                        <div className='relative max-w-xl rounded px-2 py-1 text-gray-700 shadow'>
+                        <div
+                          className={`relative max-w-xl rounded-lg px-4 py-2 text-gray-700 shadow-md shadow-gray-300 ${
+                            user._id === uid ? 'bg-blue-50' : 'bg-teal-50'
+                          }`}
+                        >
                           <span className='block text-xs'>{username}</span>
                           <span className='block'>{text}</span>
                         </div>
-                        <span className='block text-right text-xs text-gray-400'>
+                        <span className='block py-1 text-right text-xs text-gray-400'>
                           {createAt &&
                             moment(createAt.toDate()).format('DD MMM')}
                         </span>

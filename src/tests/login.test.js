@@ -1,16 +1,15 @@
 import React from 'react'
 import { SnackbarProvider } from 'notistack'
-import Home from '../pages/Home'
+import Login from '../pages/Login'
 import { shallow } from 'enzyme'
 
 describe('Login Page', () => {
   test('renders without crashing', () => {
     let wrapper = shallow(
       <SnackbarProvider>
-        <Home />
+        <Login />
       </SnackbarProvider>
     )
-
     expect(wrapper.exists()).toBe(true)
   })
 })

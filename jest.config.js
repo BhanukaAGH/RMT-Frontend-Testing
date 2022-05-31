@@ -1,5 +1,6 @@
 module.exports = {
   verbose: true,
+  testEnvironment: 'jsdom',
   moduleFileExtensions: ['js', 'jsx'],
   transformIgnorePatterns: ['<rootDir>/node_modules/'],
   testPathIgnorePatterns: ['\\\\node_modules\\\\'],
